@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package appatiendeya;
-
+package vista;
+import modelo.Conexion;
 /**
  *
  * @author ACER
  */
-public class AppAtiendeYa {
+public class AppAtiendaYa {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       Conexion a = new Conexion();
+       a.getConnection();
     }
     
 }
