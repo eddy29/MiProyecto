@@ -585,7 +585,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         jLabel33.setBackground(new java.awt.Color(255, 255, 255));
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("Usuarios");
+        jLabel33.setText("Pedidos");
         jLabel33.setOpaque(true);
         jPanel26.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 40));
 
