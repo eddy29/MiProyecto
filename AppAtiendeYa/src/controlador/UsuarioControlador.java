@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import modelo.Conexion;
 import modelo.Usuario;
+import modelo.TipoUsuario;
 /**
  *
  * @author ACER
@@ -24,13 +25,19 @@ public class UsuarioControlador {
     
     public Usuario login(String nom,String clave){
         Usuario u = new Usuario();
-        String sql = "select * from usuario where nombre = ? and clave = ?";
+        String sql = "select nombre,clave from usuario where nombre = ? and clave = ?";
         try {
             cn = c.getConnection();
             ps = cn.prepareStatement(sql);
             ps.setString(1, nom);
             ps.setString(2, clave);
             rs=ps.executeQuery();
+            while(rs.next()){
+                u.setNombre(rs.getString(1));
+                u.setClave(rs.getString(2));
+                
+            }
+            
             
         } catch (Exception e) {
             e.getMessage();

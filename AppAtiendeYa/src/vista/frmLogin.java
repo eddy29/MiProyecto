@@ -5,6 +5,7 @@
  */
 package vista;
 import controlador.UsuarioControlador;
+import modelo.Usuario;
 /**
  *
  * @author ACER
@@ -12,6 +13,7 @@ import controlador.UsuarioControlador;
 public class frmLogin extends javax.swing.JFrame {
 
     UsuarioControlador u = new UsuarioControlador();
+    Usuario usu = new Usuario();
     /**
      * Creates new form frmLogin
      */
@@ -166,7 +168,7 @@ public class frmLogin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(panelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,8 +187,8 @@ public class frmLogin extends javax.swing.JFrame {
            String usuario = txtusuario.getText();
            String clave = txtclave.getText();
            
-           u.login(usuario, clave);
-           if(u!=null){
+          usu =  u.login(usuario, clave);
+           if(usu.getNombre()!=null){
                System.out.print("bienvenido");
            }else
            {
