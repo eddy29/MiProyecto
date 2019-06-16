@@ -5,6 +5,7 @@
  */
 package vista;
 import controlador.UsuarioControlador;
+import javax.swing.JOptionPane;
 import modelo.Usuario;
 /**
  *
@@ -188,12 +189,22 @@ public class frmLogin extends javax.swing.JFrame {
            String clave = txtclave.getText();
            
           usu =  u.login(usuario, clave);
+          if(txtusuario.getText().equals("") || txtclave.getText().equals("")){
+         
+              JOptionPane.showMessageDialog(panelImage2, "Asegurece de ingresar tu clave o contraseña!");
+              
+          }else
+          {
+          
            if(usu.getNombre()!=null){
-               System.out.print("bienvenido");
+                 FormMenuPrincipal ir = new FormMenuPrincipal();
+                    ir.setVisible(true);   
            }else
            {
-            System.out.print("malo");
+                
+               JOptionPane.showMessageDialog(panelImage2, "Usuario o clave incorrecta!");
            }
+          }
                   
            
         
