@@ -1125,12 +1125,11 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     private void btnproductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproductosActionPerformed
         // TODO add your handling code here:
         try {
-            /*ProductosB pro= new ProductosB();
-            Principal.jdpescritorio.add(pro);
-            pro.toFront();
-            pro.setVisible(true);*/
-
+            frmProductos pr = new frmProductos();
+            pr.setVisible(true);
+            
         } catch (Exception e) {
+            e.getMessage();
         }
     }//GEN-LAST:event_btnproductosActionPerformed
 
@@ -1158,7 +1157,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
             {
                 capcod=tbdetbol.getValueAt(i, 0).toString();
                 capcan=tbdetbol.getValueAt(i, 3).toString();
-                descontarstock(capcod, capcan);
+                //descontarstock(capcod, capcan);
 
             }
             boleta();
