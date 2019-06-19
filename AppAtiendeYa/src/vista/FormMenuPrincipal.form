@@ -254,7 +254,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="IDETUSOFTWARE"/>
+                <Property name="text" type="java.lang.String" value="FoodRestaurant"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -1219,7 +1219,7 @@
                               <Font name="Segoe UI" size="18" style="0"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="Tablero"/>
+                            <Property name="text" type="java.lang.String" value="MESAS"/>
                             <Property name="opaque" type="boolean" value="true"/>
                           </Properties>
                           <Constraints>

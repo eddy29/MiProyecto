@@ -224,7 +224,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         jLabel32.setBackground(new java.awt.Color(31, 174, 255));
         jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("IDETUSOFTWARE");
+        jLabel32.setText("FoodRestaurant");
         jLabel32.setOpaque(true);
         jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 40));
 
@@ -583,7 +583,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Tablero");
+        jLabel3.setText("MESAS");
         jLabel3.setOpaque(true);
         jPanel23.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 40));
 
