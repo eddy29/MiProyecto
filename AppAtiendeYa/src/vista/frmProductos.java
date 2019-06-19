@@ -5,9 +5,18 @@
  */
 package vista;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.Action;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Conexion;
 
 /**
  *
@@ -22,6 +31,7 @@ DefaultTableModel tabla;
     public frmProductos() {
         initComponents();
         cargarlistaproductos("");
+        popuTable();
     }
     
       String comparar(String cod)
@@ -29,7 +39,7 @@ DefaultTableModel tabla;
         String cant="";
         try {
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM mesa WHERE id='"+cod+"'");
+            ResultSet rs = st.executeQuery("SELECT * FROM producto WHERE id='"+cod+"'");
             while(rs.next())
             {
                 cant=rs.getString(1);
@@ -42,10 +52,10 @@ DefaultTableModel tabla;
         
     }
      void cargarlistaproductos(String dato){
-        String [] Titulo = {"Codigo","Descripcion","Precio","Stock"};
+        String [] Titulo = {"Codigo","Descripcion","Precio"};
         tabla=new DefaultTableModel(null,Titulo);
     String []Registro= new String[4];
-    String mostrar="SELECT * FROM mesa WHERE CONCAT (id,'',nombreMesa) LIKE '%"+dato+"%'"; 
+    String mostrar="SELECT * FROM producto WHERE CONCAT (id,'',descripcion) LIKE '%"+dato+"%'"; 
     Statement st;
         try {
             st = cn.createStatement();
@@ -53,9 +63,9 @@ DefaultTableModel tabla;
             while(rs.next())
             {
                 Registro[0]=rs.getString("id");
-                Registro[1]=rs.getString("nombreMesa");
-                Registro[2]=rs.getString("id");
-                Registro[3]=rs.getString("nombreMesa");
+                Registro[1]=rs.getString("descripcion");
+                Registro[2]=rs.getString("precio");
+               
                 tabla.addRow(Registro);
             }
             tbprod.setModel(tabla);
@@ -67,7 +77,96 @@ DefaultTableModel tabla;
     
     
     }
+     
+     private void popuTable(){
+     
+         JMenuItem item1 = new JMenuItem("elegir");
+         item1.addActionListener(new ActionListener() {
 
+             @Override
+             public void actionPerformed(ActionEvent e) {
+               cargar();
+             }
+         });
+         jPopupMenu1.add(item1);
+         tbprod.setComponentPopupMenu(jPopupMenu1);
+     }
+     
+     void cargar(){
+     
+      try {
+         DefaultTableModel tabladet = (DefaultTableModel)     FormMenuPrincipal.tbdetbol.getModel();
+    String[]  dato=new String[5];
+   
+    int  fila = tbprod.getSelectedRow();
+    
+    
+    if(fila==-1)
+    {
+        JOptionPane.showMessageDialog(null, "No  ha seleccionado ningun registro");
+    }
+    else
+    {
+        String codins=tbprod.getValueAt(fila, 0).toString();
+        String desins=tbprod.getValueAt(fila, 1).toString();
+        String preins=tbprod.getValueAt(fila, 2).toString();
+        int c=0;
+        int j=0;
+         String  cant=JOptionPane.showInputDialog("ingrese cantidad");
+        if((cant.equals("")) || (cant.equals("0")))
+        {
+            JOptionPane.showMessageDialog(this, "Debe ingresar algun valor mayor que 0");
+        }
+       /* else
+        {
+            int canting=Integer.parseInt(cant);
+             int comp=Integer.parseInt(comparar(codins));
+             if(canting>5)
+             {
+                 JOptionPane.showMessageDialog(this,"Ud. no cuenta con el stock apropiado");
+             }*/
+             else
+             {
+                   for(int i=0;i<FormMenuPrincipal.tbdetbol.getRowCount();i++)
+                    {
+                        Object com=FormMenuPrincipal.tbdetbol.getValueAt(i,0);
+                        if(codins.equals(com))
+                        {
+                            j=i;
+                            FormMenuPrincipal.tbdetbol.setValueAt(cant, i, 3);
+                            c=c+1;
+
+                        }
+   
+                     }
+                    if(c==0)
+                    {
+
+
+                        dato[0]=codins;
+                        dato[1]=desins;
+                        dato[2]=preins;
+                        dato[3]=cant;
+
+                        tabladet.addRow(dato);
+
+                        FormMenuPrincipal.tbdetbol.setModel(tabladet);
+
+
+                    }
+             }
+  
+       // }
+        
+    
+        
+        
+        
+    }
+    } catch (Exception e) {
+    }
+     
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,13 +177,23 @@ DefaultTableModel tabla;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        mnenviar = new javax.swing.JMenuItem();
         txtprod = new javax.swing.JTextField();
         btnmostrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbprod = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        mnenviar.setText("jMenuItem1");
+        mnenviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnenviarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(mnenviar);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtprod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -158,6 +267,10 @@ DefaultTableModel tabla;
         cargarlistaproductos("");
     }//GEN-LAST:event_btnmostrarActionPerformed
 
+    private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarActionPerformed
+ 
+    }//GEN-LAST:event_mnenviarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -192,12 +305,18 @@ DefaultTableModel tabla;
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnmostrar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem mnenviar;
     private javax.swing.JTable tbprod;
     private javax.swing.JTextField txtprod;
     // End of variables declaration//GEN-END:variables
+    Conexion cc = new Conexion();
+    Connection cn = cc.getConnection();
+    
 }
